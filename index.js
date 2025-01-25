@@ -4,7 +4,7 @@ const plugin = require("tailwindcss/plugin");
 
 exports.__esModule = true;
 
-exports.default = plugin(({ addUtilities, theme, variants }) => {
+exports.default = plugin(({ addUtilities, theme }) => {
   const colors = theme("colors");
   const utilities = {
     "@keyframes ripple-effect": Object.fromEntries(
@@ -47,7 +47,7 @@ exports.default = plugin(({ addUtilities, theme, variants }) => {
       }
     }
   }
-  addUtilities(utilities, variants("backgroundColor"));
+  addUtilities(utilities);
 });
 
 function hexToRgb(hex) {
