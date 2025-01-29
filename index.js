@@ -4,7 +4,7 @@ const plugin = require("tailwindcss/plugin");
 
 exports.__esModule = true;
 
-exports.default = plugin(({ addUtilities, theme }) => {
+exports.default = plugin(({ addUtilities, theme, addVariant }) => {
   const colors = theme("colors")();
   const utilities = {
     "@keyframes ripple-effect": Object.fromEntries(
@@ -31,6 +31,7 @@ exports.default = plugin(({ addUtilities, theme }) => {
       "--ripple-speed": "0.5s",
     },
   };
+
   for (const colorKey of Object.keys(colors)) {
     const colorVariants = colors[colorKey];
     if (typeof colorVariants === "object") {
@@ -40,31 +41,34 @@ exports.default = plugin(({ addUtilities, theme }) => {
           utilities[`.ripple-${colorKey}-${variantKey}`] = {
             "--ripple-color": rippleColor,
           };
-          // utilities[`.__ripple__active.ripple-bg-${colorKey}-${variantKey}`] = {
-          //   "background-color": colorVariants[variantKey],
-          // };
         }
       }
     }
   }
-  addUtilities(utilities);
+
+  addVariant("ripple-bg", ({ modifySelectors, separator }) => {
+    modifySelectors(({ className }) => {
+      return `.ripple-bg${separator}${className}`;
+    });
+  });
+
+  addUtilities(utilities, ["responsive", "hover", "ripple-bg"]);
 });
 
+// Helper function to convert Hex or RGB to Oklch
 function hexToRgb(hex) {
-  let r = 0,
-    g = 0,
-    b = 0;
-  if (hex.length == 4) {
-    // 3 digits
+  let r = 0, g = 0, b = 0;
+
+  if (hex.length === 4) {  // 3 digits
     r = Number("0x" + hex[1] + hex[1]);
     g = Number("0x" + hex[2] + hex[2]);
     b = Number("0x" + hex[3] + hex[3]);
-  } else if (hex.length == 7) {
-    // 6 digits
+  } else if (hex.length === 7) {  // 6 digits
     r = Number("0x" + hex[1] + hex[2]);
     g = Number("0x" + hex[3] + hex[4]);
     b = Number("0x" + hex[5] + hex[6]);
   }
+
   return `${r} ${g} ${b}`;
 }
 
@@ -72,6 +76,7 @@ function rgbToRGBPlain(rgb) {
   return rgb.slice(4, -1).replace(/,\s*/g, " ");
 }
 
+// Function to convert any color to Oklch
 function colorToRGBPlain(color) {
   if (typeof color !== "string") {
     return null;
@@ -82,7 +87,10 @@ function colorToRGBPlain(color) {
   if (color.startsWith("rgb(")) {
     return rgbToRGBPlain(color);
   }
-  if (/^(\d)+\s+(\d)+\s+(\d)+$/.test(color)) {
+  if (color.startsWith("oklch(")) {
+    return color; // Return the Oklch color as is
+  }
+  if (/^(\d+)\s+(\d+)\s+(\d+)$/.test(color)) {
     return color;
   }
   return null;
