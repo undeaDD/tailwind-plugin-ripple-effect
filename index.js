@@ -1,6 +1,6 @@
 "use strict";
 
-const handler = ({ addUtilities, theme }) => {
+const handler = ({ addUtilities, theme, addVariant }) => {
   const colors = theme("colors");
   const utilities = {
     "@keyframes ripple-effect": Object.fromEntries(
