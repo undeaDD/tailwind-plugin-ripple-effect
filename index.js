@@ -1,10 +1,6 @@
 "use strict";
 
-const plugin = require("tailwindcss/plugin");
-
-exports.__esModule = true;
-
-exports.default = plugin(({ addUtilities, theme, addVariant }) => {
+const handler = ({ addUtilities, theme }) => {
   const colors = theme("colors")();
   const utilities = {
     "@keyframes ripple-effect": Object.fromEntries(
@@ -53,7 +49,7 @@ exports.default = plugin(({ addUtilities, theme, addVariant }) => {
   });
 
   addUtilities(utilities, ["responsive", "hover", "ripple-bg"]);
-});
+};
 
 // Helper function to convert Hex or RGB to Oklch
 function hexToRgb(hex) {
@@ -95,3 +91,7 @@ function colorToRGBPlain(color) {
   }
   return null;
 }
+
+module.exports = {
+  handler: handler
+};
