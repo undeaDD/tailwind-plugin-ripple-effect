@@ -1,7 +1,7 @@
 "use strict";
 
 const handler = ({ addUtilities, theme }) => {
-  const colors = theme("colors")();
+  const colors = theme("colors");
   const utilities = {
     "@keyframes ripple-effect": Object.fromEntries(
       Array.from({ length: 50 }, (_, n) => [
