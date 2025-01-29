@@ -31,6 +31,6 @@
   },
   "homepage": "https://github.com/benlesh/tailwind-plugin-ripple-effect#readme",
   "dependencies": {
-    "tailwindcss": "^3.4.1"
+    "tailwindcss": "^4.0.0"
   }
 }
