@@ -32,6 +32,11 @@ export function startRippleEffect() {
           toRipple.style.setProperty("--ripple-unset", "unset");
           toRipple.style.setProperty("--ripple-no-repeat", "no-repeat");
 
+          try {
+            const previousBackground = getComputedStyle(toRipple).backgroundImage;
+            toRipple.style.setProperty("--ripple-base-background", previousBackground);
+          } catch (e) { }
+
           toRipple.classList.add("ripple-effect"); // animate
 
           toRipple.addEventListener(

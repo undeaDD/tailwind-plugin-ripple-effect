@@ -19,8 +19,7 @@ const handler = ({ addUtilities, theme, addVariant }) => {
       "background-clip": "var(--ripple-unset)",
       "background-attachment": "var(--ripple-unset)",
       "background-repeat": "var(--ripple-no-repeat)",
-      "background-image":
-        "radial-gradient(circle at var(--ripple-offset-x) var(--ripple-offset-y), rgb(var(--ripple-color) / calc(100% - var(--ripple-on) * var(--ripple-scale))) calc(2 * var(--ripple-on) * var(--ripple-scale)), transparent calc(1.5 * var(--ripple-on) * var(--ripple-scale) + 1%))",
+      "background-image": "radial-gradient(circle at var(--ripple-offset-x) var(--ripple-offset-y), rgb(var(--ripple-color) / calc(100% - var(--ripple-on) * var(--ripple-scale))) calc(2 * var(--ripple-on) * var(--ripple-scale)), transparent calc(1.5 * var(--ripple-on) * var(--ripple-scale) + 1%)), var(--ripple-base-background, transparent);",
       animation: "ripple-effect var(--ripple-speed) linear",
     },
     ".ripple-slow": {
