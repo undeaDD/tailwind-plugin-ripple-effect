@@ -21,10 +21,8 @@ export function startRippleEffect() {
           }
 
           toRipple.classList.remove("ripple-effect");
-
-          const rect = toRipple.getBoundingClientRect();
-          const offsetX = e.clientX - rect.left;
-          const offsetY = e.clientY - rect.top;
+          const offsetX = e.clientX - toRipple.offsetLeft;
+		      const offsetY = e.clientY - toRipple.offsetTop;
 
           toRipple.style.setProperty("--ripple-offset-x", `${offsetX}px`);
           toRipple.style.setProperty("--ripple-offset-y", `${offsetY}px`);
