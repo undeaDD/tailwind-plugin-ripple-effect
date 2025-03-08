@@ -21,9 +21,6 @@ export function startRippleEffect() {
           }
 
           toRipple.classList.remove("ripple-effect");
-
-	  void toRipple.offsetWidth; // trigger layout          
-	  
 	  const [offsetX, offsetY] = toRipple === target
               ? [e.offsetX, e.offsetY]
               : [
