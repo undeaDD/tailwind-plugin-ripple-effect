@@ -10,8 +10,8 @@ const handler = ({ addUtilities, theme, addVariant }) => {
       ])
     ),
     ".ripple-effect": {
-	    "will-change": "transform, opacity";
-  	  "transform": "translateZ(0)";
+	    "will-change": "transform, opacity",
+  	  "transform": "translateZ(0)",
       "--ripple-speed": "0.2s",
       "--ripple-color": "14 165 233",
       "--ripple-on": "0",
